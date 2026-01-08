@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lang Flash</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #2196f3, #21cbf3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        .app {
+            background: #fff;
+            width: 350px;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #2196f3;
+        }
+
+        .card {
+            background: #f5f5f5;
+            border-radius: 12px;
+            padding: 40px 20px;
+            font-size: 1.6em;
+            cursor: pointer;
+            transition: transform 0.3s;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .hint {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #777;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            background: #2196f3;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1976d2;
+        }
+    </style>
+</head>
+<body>
+
+<div class="app">
+    <h1>Lang Flash</h1>
+
+    <div class="card" id="flashCard" onclick="flipCard()">
+        Hello
+    </div>
+
+    <div class="hint">Click the card to flip</div>
+
+    <button onclick="nextCard()">Next</button>
+</div>
+
+<script>
+    const cards = [
+        { front: "Hello", back: "Hola" },
+        { front: "Thank You", back: "Gracias" },
+        { front: "Good Morning", back: "Buenos Días" },
+        { front: "Good Night", back: "Buenas Noches" },
+        { front: "Please", back: "Por Favor" }
+    ];
+
+    let current = 0;
+    let flipped = false;
+
+    const card = document.getElementById("flashCard");
+
+    function flipCard() {
+        if (!flipped) {
+            card.textContent = cards[current].back;
+            flipped = true;
+        } else {
+            card.textContent = cards[current].front;
+            flipped = false;
+        }
+    }
+
+    function nextCard() {
+        current = (current + 1) % cards.length;
+        flipped = false;
+        card.textContent = cards[current].front;
+    }
+</script>
+
+</body>
+</html>
